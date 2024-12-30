@@ -10,11 +10,10 @@ workflow removestar_VCFs {
 
      input {
         File vcf_file
-        File tabix_file
     }
 
     call run_removestaring { 
-            input: vcf = vcf_file, tabix = tabix_file
+            input: vcf = vcf_file
     }
 
     output {
@@ -27,7 +26,6 @@ workflow removestar_VCFs {
 task run_removestaring {
     input {
         File vcf
-        File tabix
         Int memSizeGB = 4
         Int threadCount = 1
         Int diskSizeGB = 2*round(size(vcf, "GB")) + 20
