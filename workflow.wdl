@@ -33,7 +33,7 @@ task run_removestaring {
     }
     
     command <<<
-    zcat ~{vcf} | awk -F'\t' '($3 != "*" && $4 != "*")' > ~{out_name}.removestared.vcf
+    zcat ~{vcf} | awk '($4 != "*" && $5 != "*")' > ~{out_name}.removestared.vcf
     bgzip ~{out_name}.removestared.vcf
     tabix -p vcf ~{out_name}.removestared.vcf.gz
     >>>
